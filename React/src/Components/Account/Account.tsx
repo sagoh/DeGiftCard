@@ -31,9 +31,11 @@ export default function Account() {
 
 	return (
 		<>
+			{console.log("account"+ account)}
 			{!account ? (
 				<>
 				<Button onClick={() => {
+					console.log("activatewallet");
                     activateBrowserWallet();
                 }} >Connect wallet</Button>
 				</>

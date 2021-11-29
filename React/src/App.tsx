@@ -21,6 +21,7 @@ import Slider from "./Components/Slider/Slider";
 import Home from "./Pages/Home/Home";
 import GiftVoucher from "./Pages/GiftVoucher/GiftVoucher";
 import NotFound from "./Pages/NotFound/NotFound";
+import GiftVoucherMgt from './Pages/GiftVoucherMgmt/GiftVoucherMgmt';
 // Styles
 import { Wrapper, StyledButton } from './App.styles';
 // Types
@@ -105,6 +106,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home handleAddToCart={handleAddToCart} />} />
           <Route path='/voucher/new' element={<GiftVoucher />} />
+          <Route path='/voucher/mgmt' element={<GiftVoucherMgt />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       
