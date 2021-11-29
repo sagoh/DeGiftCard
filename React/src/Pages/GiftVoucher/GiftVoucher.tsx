@@ -1,18 +1,16 @@
 import { GiftVoucherAbi } from '../../ABIs/types';
-import ABI from '../../abis/GiftVoucher.abi.json';
+import ABI from '../../ABIs/GiftVoucher.abi.json';
 import { NFT_ADDRESSES } from '../../Constants/Addresses';
 import React, { useState } from 'react';
 import { JsonRpcSigner } from '@ethersproject/providers';
 import { getExplorerTransactionLink, useEthers } from '@usedapp/core';
 import useContract from '../../Hooks/useContract';
-import image from '../../assets/images/Gift-Voucher1.png';
+import image from '../../Assets/Images/Gift-Voucher1.png';
 import MintButton from '../../Components/MintButton/MintButton';
 
-interface MintProps {
-	handleUpdate: Function;
-}
 
-export default function GiftVoucher(props: MintProps) {
+
+export default function GiftVoucher() {
 	const contract = useContract<GiftVoucherAbi>(
 		NFT_ADDRESSES,
 		ABI
@@ -36,7 +34,7 @@ export default function GiftVoucher(props: MintProps) {
 			}
 
 			await tx?.wait();
-			props.handleUpdate(tx?.hash);
+			//props.handleUpdate(tx?.hash);
 
 			setIsDisabled(false);
 			setTxHash(undefined);

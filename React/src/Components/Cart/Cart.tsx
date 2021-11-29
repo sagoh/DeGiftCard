@@ -1,6 +1,6 @@
 import CartItem from '../CartItem/CartItem';
 import { Wrapper } from './Cart.styles';
-import { CartItemType } from '../App';
+import { CartItemType } from '../../App';
 import {Select } from '@material-ui/core';
 
 type Props = {

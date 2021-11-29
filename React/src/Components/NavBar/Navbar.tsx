@@ -47,11 +47,13 @@ const Navbar = () => {
             </SearchContainer>
           </Left>
           <Center>
-            <Logo>Shopping Mall.</Logo>
+            <Link href="/">
+              <Logo>Shopping Mall.</Logo>
+            </Link>
           </Center>
           <Right>
             <MenuItem>
-              <Link href="/GiftVoucher">
+              <Link href="/voucher/new">
               Buy Voucher
               </Link>
             </MenuItem>

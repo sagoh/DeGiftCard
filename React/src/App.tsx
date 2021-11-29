@@ -1,5 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 // Components
 import Item from './Components/Item/Item';
 import Cart from './Components/Cart/Cart';
@@ -12,6 +18,9 @@ import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/NavBar/Navbar";
 import Newsletter from "./Components/Newsletter/Newsletter";
 import Slider from "./Components/Slider/Slider";
+import Home from "./Pages/Home/Home";
+import GiftVoucher from "./Pages/GiftVoucher/GiftVoucher";
+import NotFound from "./Pages/NotFound/NotFound";
 // Styles
 import { Wrapper, StyledButton } from './App.styles';
 // Types
@@ -36,6 +45,8 @@ const App = () => {
     getProducts
   );
   console.log(data);
+
+
 
   const getTotalItems = (items: CartItemType[]) =>
     items.reduce((ack: number, item) => ack + item.amount, 0);
@@ -74,32 +85,31 @@ const App = () => {
   if (error) return <div>Something went wrong ...</div>;
 
   return (
-    <Wrapper>
-      <Navbar />
-      <Slider />
-      <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-        <Cart
-          cartItems={cartItems}
-          addToCart={handleAddToCart}
-          removeFromCart={handleRemoveFromCart}
-        />
-      </Drawer>
-      <StyledButton onClick={() => setCartOpen(true)}>
-        <Badge badgeContent={getTotalItems(cartItems)} color='error'>
-          <AddShoppingCartIcon />
-        </Badge>
-      </StyledButton>
-      <Grid container spacing={3}>
-        {data?.map(item => (
-          <Grid item key={item.id} xs={12} sm={4}>
-            <Item item={item} handleAddToCart={handleAddToCart} />
-          </Grid>
-        ))}
-      </Grid>
-      <Newsletter/>
-      <Footer/>
-     
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <Navbar />
+                
+        <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
+          <Cart
+            cartItems={cartItems}
+            addToCart={handleAddToCart}
+            removeFromCart={handleRemoveFromCart}
+          />
+        </Drawer>
+        <StyledButton onClick={() => setCartOpen(true)}>
+          <Badge badgeContent={getTotalItems(cartItems)} color='error'>
+            <AddShoppingCartIcon />
+          </Badge>
+        </StyledButton>
+        
+        <Routes>
+          <Route path='/' element={<Home handleAddToCart={handleAddToCart} />} />
+          <Route path='/voucher/new' element={<GiftVoucher />} />
+          <Route path='/*' element={<NotFound />} />
+        </Routes>
+      
+      </Wrapper>
+    </Router>
   );
 };
 
