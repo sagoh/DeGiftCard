@@ -7,7 +7,7 @@ import { ChainId, Config, DAppProvider } from '@usedapp/core';
 const client = new QueryClient();
 
 const alchemyKey =
-	process.env.REACT_APP_ALCHEMY_KEY || `-hGaD3Kdebo8_Q5fYjPEUkn6qTjcKKoR`;
+	process.env.REACT_APP_ALCHEMY_KEY ;
 
 const config = {
 	readOnlyChainId: ChainId.Rinkeby,
