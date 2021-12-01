@@ -8,6 +8,7 @@ import useContract from '../../Hooks/useContract';
 import image from '../../Assets/Images/Gift-Voucher1.png';
 import MintButton from '../../Components/MintButton/MintButton';
 import { Link } from "@material-ui/core";
+import NotAuthenticated from "../NotAuthenticated/NotAuthenticated"
 
 import {
 	useBalance,
@@ -30,7 +31,7 @@ export default function GiftVoucher() {
 	);
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
 	const [txHash, setTxHash] = useState<string | undefined>(undefined);
-	const { library, chainId } = useEthers();
+	const { account,library, chainId } = useEthers();
 	const [errorMessage, setErrorMessage] = useState('');
 	const [voucherPurchased, setVoucherPurchased] = useState('');
 
@@ -80,6 +81,10 @@ if(voucherPurchased)
 }
 else
 	return (
+		<>
+		{!account ? (
+			<NotAuthenticated />
+		) : (
 		<div>
 			<h1>0.1 Eth Gift Voucher</h1>
 			<img className='image' src={image} alt='NFT Voucher' />
@@ -99,5 +104,7 @@ else
 				)}
 			</div>
 		</div>
+		)}
+		</>
 	);
 }

@@ -22,6 +22,7 @@ import Home from "./Pages/Home/Home";
 import GiftVoucher from "./Pages/GiftVoucher/GiftVoucher";
 import NotFound from "./Pages/NotFound/NotFound";
 import GiftVoucherMgt from './Pages/GiftVoucherMgmt/GiftVoucherMgmt';
+import GiftVoucherDetails from './Pages/GiftVoucherDetails/GiftVoucherDetails'
 // Styles
 import { Wrapper, StyledButton } from './App.styles';
 // Types
@@ -106,7 +107,8 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Home handleAddToCart={handleAddToCart} />} />
           <Route path='/voucher/new' element={<GiftVoucher />} />
-          <Route path='/voucher/mgmt' element={<GiftVoucherMgt />} />
+          <Route path='/voucher/mgmt' element={<GiftVoucherMgt/>} />
+          <Route path='/voucher/details/:voucherID' element={<GiftVoucherDetails/>} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       

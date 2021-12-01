@@ -1,8 +1,10 @@
 
 import {Container, Wrapper, Left, Language,SearchContainer,Input, Center,Logo, Right, MenuItem} from './Navbar.styles'
 import { Search } from "@material-ui/icons";
-import { Link } from "@material-ui/core";
+import { Link,Button, Menu } from "@material-ui/core";
 import Account from '../Account/Account';
+import React from "react";
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state'
 
 const Navbar = () => {
   
@@ -23,9 +25,19 @@ const Navbar = () => {
           </Center>
           <Right>
             <MenuItem>
-              <Link href="/voucher/new">
-              Buy Voucher
-              </Link>
+            <PopupState variant="popover" popupId="demo-popup-menu">
+              {(popupState) => (
+                <React.Fragment>
+                   <Button variant="contained" {...bindTrigger(popupState)}>
+                      Vouchers
+                  </Button>
+                  <Menu {...bindMenu(popupState)}>
+                    <MenuItem onClick={popupState.close}><Link href="/voucher/new">New Voucher</Link></MenuItem>
+                    <MenuItem onClick={popupState.close}><Link href="/voucher/mgmt">List</Link></MenuItem>
+                  </Menu>
+                 </React.Fragment>
+              )}
+            </PopupState>
             </MenuItem>
             <MenuItem>
               <Account />
