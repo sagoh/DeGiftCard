@@ -9,7 +9,7 @@ const client = new QueryClient();
 const alchemyKey =
 	process.env.REACT_APP_ALCHEMY_KEY ;
   
-  console.log(alchemyKey);
+  console.log("alchemyKey :" + alchemyKey);
 const config = {
 	readOnlyChainId: ChainId.Rinkeby,
 	readOnlyUrls: {

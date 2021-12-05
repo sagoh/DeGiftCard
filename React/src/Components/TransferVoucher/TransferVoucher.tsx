@@ -1,8 +1,4 @@
 import React, {  useState } from 'react';
-import PropTypes from 'prop-types';
-// Helpers
-// Styles
-import { BigNumber } from '@ethersproject/bignumber';
 import { Button } from "@material-ui/core";
 import { Wrapper, Content } from './TransferVoucher.styles';
 

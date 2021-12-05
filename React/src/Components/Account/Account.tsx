@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { shortenIfAddress, useEthers } from '@usedapp/core';
-import { Badge,Button } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 
 
 export default function Account() {
@@ -23,10 +23,6 @@ export default function Account() {
 
 	const formatAddress = () => {
 		return ens ?? shortenIfAddress(account);
-	};
-
-	const _handleUpdate = (_newTransaction: string) => {
-		setNewTransaction(_newTransaction);
 	};
 
 	return (

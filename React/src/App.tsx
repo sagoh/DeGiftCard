@@ -3,26 +3,27 @@ import { useQuery } from 'react-query';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 // Components
-import Item from './Components/Item/Item';
 import Cart from './Components/Cart/Cart';
 import Drawer from '@material-ui/core/Drawer';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core/Badge';
-import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/NavBar/Navbar";
-import Newsletter from "./Components/Newsletter/Newsletter";
-import Slider from "./Components/Slider/Slider";
 import Home from "./Pages/Home/Home";
+import { GiftVoucherAbi } from './ABIs/types';
+import ABI from './ABIs/GiftVoucher.abi.json';
+import { NFT_ADDRESSES } from './Constants/Addresses';
 import GiftVoucher from "./Pages/GiftVoucher/GiftVoucher";
 import NotFound from "./Pages/NotFound/NotFound";
 import GiftVoucherMgt from './Pages/GiftVoucherMgmt/GiftVoucherMgmt';
 import GiftVoucherDetails from './Pages/GiftVoucherDetails/GiftVoucherDetails'
+import useOwnVouchers from './Hooks/useOwnVouchers';
+import useContract from './Hooks/useContract';
+import { BigNumber } from '@ethersproject/bignumber';
+import {useEthers } from '@usedapp/core';
 // Styles
 import { Wrapper, StyledButton } from './App.styles';
 // Types
@@ -40,8 +41,17 @@ const getProducts = async (): Promise<CartItemType[]> =>
   await (await fetch('https://fakestoreapi.com/products')).json();
 
 const App = () => {
+  //const { account } = useEthers();
+  /*const contract = useContract<GiftVoucherAbi>(
+    NFT_ADDRESSES,
+    ABI 
+  );*/
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([] as CartItemType[]);
+  //const [ownedVouchers, setOwnVouchers] = useState([] as BigNumber[] | undefined);
+  
+
+
   const { data, isLoading, error } = useQuery<CartItemType[]>(
     'products',
     getProducts
@@ -83,6 +93,16 @@ const App = () => {
     );
   };
 
+  
+  /* 
+    useOwnVouchers(account,contract,false).then(
+    res => {
+      setOwnVouchers(res);
+    }
+  )
+  */
+  //setOwnVouchers([] as BigNumber[])
+  
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
 
@@ -92,7 +112,7 @@ const App = () => {
         <Navbar />
                 
         <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
-          <Cart
+        <Cart
             cartItems={cartItems}
             addToCart={handleAddToCart}
             removeFromCart={handleRemoveFromCart}

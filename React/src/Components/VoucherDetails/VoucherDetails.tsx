@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // Helpers
 // Styles
 import { Wrapper, Content } from './VoucherDetails.styles';
-import { BigNumber } from '@ethersproject/bignumber';
 
 type Props = {
     deadline: string,

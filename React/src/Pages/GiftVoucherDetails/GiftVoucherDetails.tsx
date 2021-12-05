@@ -3,23 +3,10 @@ import useContract from '../../Hooks/useContract';
 import { GiftVoucherAbi } from '../../ABIs/types';
 import ABI from '../../ABIs/GiftVoucher.abi.json';
 import { NFT_ADDRESSES } from '../../Constants/Addresses';
-import Grid from '@material-ui/core/Grid';
-import {Link,Button} from '@material-ui/core';
-import { getExplorerTransactionLink, useEthers } from '@usedapp/core';
+import { useEthers } from '@usedapp/core';
 import { JsonRpcSigner } from '@ethersproject/providers';
 import { useParams } from 'react-router-dom';
 import VoucherDetails from "../../Components/VoucherDetails/VoucherDetails"
-import NotAuthenticated from "../NotAuthenticated/NotAuthenticated"
-import {
-	useBalance,
-	useContractLoader,
-	useContractReader,
-	useGasPrice,
-	useOnBlock,
-	useUserProviderAndSigner,
-  } from "eth-hooks";
-  import { useEventListener } from "eth-hooks/events/useEventListener";
-  import { useExchangeEthPrice } from "eth-hooks/dapps/dex";
 import { BigNumber } from '@ethersproject/bignumber';
 import TransferVoucher from "../../Components/TransferVoucher/TransferVoucher";
 const { ethers } = require("ethers");
